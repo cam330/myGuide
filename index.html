@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>MyGuide</title>
+<!-- bower:css -->
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles/styles.css">
+<!-- endinject -->
+</head>
+
+<body ng-controller='MapController as vm'>
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/wavesurfer.js/dist/wavesurfer.min.js"></script>
+<script src="bower_components/angularAudioRecorder/dist/angular-audio-recorder.js"></script>
+<script src="bower_components/recordrtc/RecordRTC.js"></script>
+<!-- endbower -->
+<h1>MyGuide</h1>
+
+<!-- Is basic audio recording from https://logbon72.github.io/angular-recorder/  -->
+<ng-audio-recorder id='audioInput' audio-model='recordedInput'>
+  <!-- Start controls, exposed via recorder-->
+  <div ng-if="recorder.isAvailable">
+    <button ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording">
+        Start Record
+    </button>
+    <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+        Stop Record
+    </button>
+    <button ng-click="recorder.playbackRecording()" type="button"
+            ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+        Play Back
+    </button>
+  </div>
+
+  <div ng-if="!recorder.isAvailable">
+    Message for users when recording is not possible.
+  </div>
+
+  <button ng-click="recorder.save()" type="button">SAVE</button>
+
+<h2>{{recorder.id}}</h2>
+	  
+  <!-- End controls-->
+</ng-audio-recorder>
+
+<button ng-click="vm.showRecording()">SHOW AUDIO</button>
+
+<div class="clickDiv">
+	<div id="imageDiv">
+		<img src="app/img/notreDame.jpg" ng-click="vm.addOnClick($event)" id="img">
+	</div>
+	<button id='dxy' class="addText1" ng-click="vm.detailBtn('HELLO')" ng-model="vm.btn">1</button>
+	<input type="button" name="BUTTON" >
+<!-- 	<ul ng-repeat="data in vm.pointsArray">
+		<li>
+			<button>{{data}}</button>
+		</li>
+	</ul> -->
+<!-- 	<button style="top:30% right:40%" class="addText2" ng-click="vm.detailBtn('hello')" ng-model="vm.btn">2</button> -->
+</div>
+
+<div>
+	<label>Point Title</label>
+	<input type="text" name="pointTitle" placeholder="title" ng-model="vm.pointTitle">
+	<textarea placeholder="Add some detail" ng-model="vm.pointDetails"></textarea>
+	<button ng-click="vm.addDetail(vm.pointTitle)">Add Button</button>
+</div>
+
+
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<script src="/app/partials/map.controller.js"></script>
+<script src="/app/partials/map.service.js"></script>
+<!-- endinject -->
+</body>
+</html>

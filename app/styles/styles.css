@@ -1,0 +1,40 @@
+.clickDiv{
+	border: 0;
+	float: left;
+/*  position: relative;
+	color: green;*/
+/*	height: 4em;
+	width: 100%;*/
+}
+
+.addText1{
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: green;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.addText2{
+	border: 0;
+  position: absolute;
+  top: 42%;
+  right: 60%;
+  color: green;
+  background-color: red;
+  border-radius: 5px;
+}
+
+#img {
+	height: 500px;
+	width: 300px;
+	
+}
+
+#imageDiv {
+	position: relative;
+	height: 500px;
+	width: 300px;
+}
