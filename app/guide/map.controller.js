@@ -5,11 +5,12 @@
         .module('app')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$http'];
+    MapController.$inject = ['$http', 'MapService'];
 
     /* @ngInject */
-    function MapController($http) {
+    function MapController($http, MapService) {
         var vm = this;
+
         vm.title = 'MapController';
         vm.pointsArray = [];
         vm.detailsArray = [];
@@ -27,7 +28,15 @@
 
         function activate() {
 
+        	vm.enablePointAdd = false;
+            vm.showAddDetailView = false;
+
+        	console.log(vm.enablePointAdd);
         	
+        }
+
+        vm.addPoint = function(){
+        	vm.enablePointAdd =true;
         }
 
         //Imables points of intrest to be moved around
@@ -58,6 +67,9 @@
 
         //When map is clicked, gets the percentage of image that has been selected
         vm.addOnClick = function($event){
+
+        	if (vm.enablePointAdd == true) {
+            vm.showAddDetailView = true;
         	var element = document.getElementById("img");
 
         	console.log(vm.pointsArray.length+1);
@@ -76,7 +88,7 @@
         		top: vm.percentH + "%",
         		left: vm.percentW + "%",
         		"background-color" : "red",
-        		"border-radius" : 5 + "px",
+        		"border-radius" : 3 + "px",
         	};
 
         	Object.keys( elStyle ).forEach(function ( property ) {
@@ -98,7 +110,11 @@
 
         	// document.getElementById("point").onclick = function() {
         	// 	console.log("HEYY");
+        	vm.enablePointAdd = false;
         	// }
+        } else {
+        	console.log("NEED TO CLICK ADD");
+        }
 
         }
 
@@ -109,13 +125,20 @@
         }
 
         vm.addDetail = function(title){
-        	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW});
+        	vm.pointTitle = "";
+			vm.pointDetails = "";
+        	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : MapService.returnBlob()});
         	console.log(vm.detailsArray);
+            vm.showAddDetailView = false;
+
         }
 
-        vm.showRecording = function(recorder){
-        	console.log("HEY");
+        vm.cancelDetailAdd = function(){
+            vm.pointTitle = "";
+            vm.pointDetails = "";
+            vm.showAddDetailView = false;
         }
+
 
     }
 })();

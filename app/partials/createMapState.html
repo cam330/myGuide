@@ -1,0 +1,46 @@
+<h1 class="col-sm-offset-1">Notre Dame</h1>
+<div class="col-sm-offset-5">
+	<button class="btn" ng-click="vm.addPoint()">ADD A POINT</button>
+</div>
+<div class="clickDiv">
+	<div id="imageDiv">
+		<img src="app/img/notreDame.jpg" ng-click="vm.addOnClick($event)" id="img">
+	</div>
+	<button id='dxy' class="addText1" ng-click="vm.detailBtn('HELLO')" ng-model="vm.btn">1</button>
+<!-- 	<button style="top:30% right:40%" class="addText2" ng-click="vm.detailBtn('hello')" ng-model="vm.btn">2</button> -->
+</div>
+
+<div id="addingPointDetailsDiv" class="col-sm-5" ng-show="vm.showAddDetailView">
+	<label class="col-sm-offset-4 col-sm-12">Add some detail</label>
+	<input class="col-sm-12 form-control" type="text" name="pointTitle" placeholder="Title" ng-model="vm.pointTitle">
+	<textarea class="col-sm-12 form-control" placeholder="Add some detail" ng-model="vm.pointDetails"></textarea>
+
+	<!-- Is basic audio recording from https://logbon72.github.io/angular-recorder/  -->
+		<ng-audio-recorder id='audioInput' audio-model='recordedInput'>
+		  <!-- Start controls, exposed via recorder-->
+		  <div class="buttonRecorderDiv" ng-if="recorder.isAvailable">
+		    <button class="btn" ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording">
+		        Start Record
+		    </button>
+		    <button class="btn" ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+		        Stop Record
+		    </button>
+		    <button class="btn" ng-click="recorder.playbackRecording()" type="button"
+		            ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+		        Play Back
+		    </button>
+		  </div>
+
+		  <div ng-if="!recorder.isAvailable">
+		    Message for users when recording is not possible.
+		  </div>
+
+		<h2>{{recorder.elapsedTime}}</h2>
+			  
+		  <!-- End controls-->
+		</ng-audio-recorder>
+
+	<button class="btn btn-success col-sm-12" ng-click="vm.addDetail(vm.pointTitle)">Add Point</button>
+	<button class="btn col-sm-12" ng-click="vm.cancelDetailAdd()">Cancel</button>
+
+</div>

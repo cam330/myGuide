@@ -19,7 +19,10 @@
 
         this.passedAudioBlob = function(blob){
         	passedBlob = blob;
-        	console.log(passedBlob);
+        }
+
+        this.returnBlob = function(){
+        	return passedBlob;
         }
     }
 })();

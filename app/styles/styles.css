@@ -1,3 +1,4 @@
+
 .clickDiv{
 	border: 0;
 	float: left;
@@ -14,7 +15,7 @@
   right: 0;
   color: green;
   background-color: red;
-  border-radius: 5px;
+
 }
 
 .addText2{
@@ -37,4 +38,51 @@
 	position: relative;
 	height: 500px;
 	width: 300px;
+  margin-right: 3em;
+  margin-left: 3em;
 }
+
+#addingPointDetailsDiv {
+  margin-top: 3em;
+  outline: 1px solid #ccc;
+  padding: .7em;
+}
+#addingPointDetailsDiv .col-sm-12{
+  margin-top: .5em;
+}
+
+#sideNavItem {
+  display: block;
+  height: 40px;
+  padding-top: 2em;
+  padding-left: 1em;
+}
+
+.top {
+  position:absolute;
+  left:0; 
+  right:0;
+  height: 5em;
+  background: grey;
+}
+
+.left {
+  position:absolute;
+  left:0; 
+  top: 5em; 
+  bottom: 0em;
+  width: 15em;
+  background: #ccc;
+}
+
+.main {
+  position: absolute;
+  left:16em; 
+  top:5em; 
+  right:0; 
+  bottom:0;
+}
+
+
+
+
