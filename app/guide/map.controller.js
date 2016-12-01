@@ -139,6 +139,10 @@
             vm.showAddDetailView = false;
         }
 
-
+        vm.apiTestButton = function(){
+            MapService.postTour(vm.detailsArray).then(function(response){
+                console.log(response);
+            });
+        }
     }
 })();

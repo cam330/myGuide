@@ -3,7 +3,12 @@
 
    var app = angular.module('app', ['angularAudioRecorder', 'ui.router']);
 
-   		app.config(function($stateProvider, $urlRouterProvider){
+   		app.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+
+              $httpProvider.defaults.headers.common = {};
+              $httpProvider.defaults.headers.post = {};
+              $httpProvider.defaults.headers.put = {};
+              $httpProvider.defaults.headers.patch = {};
 
    			$urlRouterProvider.otherwise("/createMapState");
 
