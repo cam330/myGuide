@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-   var app = angular.module('app', ['angularAudioRecorder', 'ui.router']);
+   var app = angular.module('app', ['angularAudioRecorder', 'ui.router', 'firebase']);
 
    		app.config(function($stateProvider, $urlRouterProvider, $httpProvider){
 

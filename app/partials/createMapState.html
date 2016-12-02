@@ -45,4 +45,15 @@
 
 </div>
 
-<button ng-click="vm.apiTestButton()">TEST API</button>
+<pre>
+	{{vm.users[0].first | json}}
+</pre>
+
+<!-- <ul>
+	<li ng-repeat="user in vm.user">
+		{{user.name}}
+	</li>
+</ul> -->
+
+<button ng-click="vm.apiTestButton()">Get Api</button>
+<button ng-click="vm.apiPostButton()">Post Api</button>

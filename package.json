@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "file-system": "^2.2.2",
+    "firebase": "^3.6.2",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-inject": "^4.1.0",

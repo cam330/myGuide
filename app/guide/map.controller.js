@@ -1,15 +1,31 @@
 (function() {
     'use strict';
 
+
+      var config = {
+        apiKey: "AIzaSyA0QCMjwKqyLST5MWCdWaAnj-XsUSrDb_c",
+        authDomain: "myguide-db6d3.firebaseapp.com",
+        databaseURL: "https://myguide-db6d3.firebaseio.com",
+        storageBucket: "myguide-db6d3.appspot.com",
+        messagingSenderId: "1011425834238"
+      };
+      firebase.initializeApp(config);
+
     angular
         .module('app')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$http', 'MapService'];
+    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray'];
 
     /* @ngInject */
-    function MapController($http, MapService) {
+    function MapController($http, MapService, $firebaseObject, $firebaseArray, users) {
         var vm = this;
+
+        var rootRef = firebase.database().ref();
+        // // var rootRef = new Firebase("https://myguide-db6d3.firebaseio.com");
+        // var davidRef = rootRef.child('users').child('cam');
+        // this.user = $firebaseObject(davidRef);
+        // console.log(this.user);
 
         vm.title = 'MapController';
         vm.pointsArray = [];
@@ -127,7 +143,12 @@
         vm.addDetail = function(title){
         	vm.pointTitle = "";
 			vm.pointDetails = "";
-        	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : MapService.returnBlob()});
+            vm.dataString = MapService.returnBlob();
+            // console.log(vm.dataString);
+            // vm.dataString = vm.dataString.substring(0, vm.dataString.indexOf('base64,'));
+            vm.dataString.split('base64,')[0];
+            console.log(vm.dataString);
+        	// vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : MapService.returnBlob()});
         	console.log(vm.detailsArray);
             vm.showAddDetailView = false;
 
@@ -140,9 +161,37 @@
         }
 
         vm.apiTestButton = function(){
-            MapService.postTour(vm.detailsArray).then(function(response){
-                console.log(response);
-            });
+            //*** BELOW FOR USING MONGODB
+            // var randomId = Math.random() * ()
+            // MapService.postTour(vm.detailsArray).then(function(response){
+            //     console.log(response);
+            // });
+
+            //*** BELOW FOR GETTING ARRAY OF ALL USERS IN USERS TABLE
+            this.users = $firebaseArray(rootRef.child('HELLO'));
+
+            //*** BELOW FOR GETTING A USER BY THE NAME OF CAM
+            // this.user = MapService.get('cam');
+
+
+            //*** BELOW LOGS BEFORE ALL DATA IS RETURNED
+            // console.log(this.users);
+            // console.log(this.users.length);
+
+            //*** BELOW WAITS FOR ALL DATA TO LOAD THEN CONSOLE LOGS IT
+            this.users.$loaded().then(function() {
+                console.log(this.users.length);
+                console.log(this.users);
+            }.bind(this));
+
+            //*** BELOW FUNCTION NOT BEING USED
+            // MapService.fireBaseTest().then(function(response){
+            //     console.log(response);
+            // });
+        }
+
+        vm.apiPostButton = function(){
+            rootRef.child('tours').child('france').set({array: vm.detailsArray});
         }
     }
 })();

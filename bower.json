@@ -17,7 +17,9 @@
     "recordrtc": "^5.4.0",
     "angular-ui-router": "^0.3.2",
     "bootstrap": "^3.3.7",
-    "requirejs": "^2.3.2"
+    "requirejs": "^2.3.2",
+    "firebase": "^3.6.2",
+    "angularfire": "^2.1.0"
   },
   "overrides": {
     "bootstrap": {

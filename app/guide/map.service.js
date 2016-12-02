@@ -5,12 +5,14 @@
         .module('app')
         .service('MapService', MapService);
 
-    MapService.$inject = ['$http'];
+    MapService.$inject = ['$http','$firebaseObject', '$firebaseArray'];
 
     /* @ngInject */
-    function MapService($http) {
+    function MapService($http, $firebaseObject, firebaseArray) {
         // this.func = func;
         var passedBlob = '';
+
+        var rootRef = firebase.database().ref();
 
         ////////////////
 
@@ -58,6 +60,26 @@
             }).then(function(response){
                 console.log(response);
             });
+        }
+
+        this.fireBaseTest = function(id){
+            
+   
+        }
+
+        //*** BELOW GETTING A USER BY A NAME THAT WAS PASSED IN BY ID FROM CONTROLLER, TEST IS SET UP FOR USER NAME CAM
+        this.get = function get(id){
+            var rootRef = firebase.database().ref();
+            var userNameRef = rootRef.child('users').child(id);
+            var userFromName = $firebaseObject(userNameRef);
+            return userFromName;
+        }
+
+        //*** BELOW GETTING ALL OF THE USERS INSIDE THE USERS TABLE
+        this.all = function all(){
+            var rootRef = firebase.database().ref();
+            var allUsers = $firebaseObject(rootRef);
+            return allUsers;
         }
     }
 })();
