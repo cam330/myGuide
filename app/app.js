@@ -10,7 +10,7 @@
               $httpProvider.defaults.headers.put = {};
               $httpProvider.defaults.headers.patch = {};
 
-   			$urlRouterProvider.otherwise("/createMapState");
+   			$urlRouterProvider.otherwise("/homePageState");
 
    			$stateProvider
    				.state('createMapState',{
@@ -22,6 +22,24 @@
    						css: 'app/styles/styles.css'
    					}
    				})
+          .state('homePageState',{
+            url: "/homePageState",
+            templateUrl: "app/partials/homePageState.html",
+            controller: 'HomePageController',
+            controllerAs: 'vm',
+            data:{
+              css: 'app/styles/styles.css'
+            }
+          })
+          .state('loginPage',{
+            url: "/loginPage",
+            templateUrl: "app/partials/loginPage.html",
+            controller: 'LoginController',
+            controllerAs: 'vm',
+            data:{
+              css: 'app/styles/styles.css'
+            }
+          })
 
    		});
 })();

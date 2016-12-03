@@ -144,11 +144,8 @@
         	vm.pointTitle = "";
 			vm.pointDetails = "";
             vm.dataString = MapService.returnBlob();
-            // console.log(vm.dataString);
-            // vm.dataString = vm.dataString.substring(0, vm.dataString.indexOf('base64,'));
-            vm.dataString.split('base64,')[0];
-            console.log(vm.dataString);
-        	// vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : MapService.returnBlob()});
+            vm.dataString = vm.dataString.substring(22);
+        	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : vm.dataString});
         	console.log(vm.detailsArray);
             vm.showAddDetailView = false;
 

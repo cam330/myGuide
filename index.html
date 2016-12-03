@@ -12,7 +12,7 @@
 <!-- endinject -->
 </head>
 
-<body>
+<body ng-controller="MainController as vm">
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/wavesurfer.js/dist/wavesurfer.min.js"></script>
@@ -26,16 +26,17 @@
 <!-- endbower -->
 
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<div ng-show="isActive('/createMapState')">
+	<div class="top">
+	    
+	</div>
 
-<div class="top">
-    
-</div>
-
-<div class="left">
-  <a id="sideNavItem" href="#">Link 1</a><br> 
-  <a id="sideNavItem" href="#">Link 2</a><br> 
-  <a id="sideNavItem" href="#">Link 3</a><br>
-  <a id="sideNavItem" href="#">Link 4</a><br>
+	<div class="left">
+	  <a id="sideNavItem" href="#">Link 1</a><br> 
+	  <a id="sideNavItem" href="#">Link 2</a><br> 
+	  <a id="sideNavItem" href="#">Link 3</a><br>
+	  <a id="sideNavItem" href="#">Link 4</a><br>
+	</div>
 </div>
 <div class="main">
 
@@ -45,6 +46,9 @@
 
 <!-- inject:js -->
 <script src="/app/app.js"></script>
+<script src="/app/guide/homePage.controller.js"></script>
+<script src="/app/guide/loginPage.controller.js"></script>
+<script src="/app/guide/main.controller.js"></script>
 <script src="/app/guide/map.controller.js"></script>
 <script src="/app/guide/map.service.js"></script>
 <!-- endinject -->

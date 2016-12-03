@@ -83,6 +83,11 @@
   bottom:0;
 }
 
+#analyticsDiv {
+  height: 15em;
+  width: 73em;
+  border: 1px solid #ccc;
+}
 
 
 
