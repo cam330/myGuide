@@ -23,12 +23,13 @@
 <script src="bower_components/requirejs/require.js"></script>
 <script src="bower_components/firebase/firebase.js"></script>
 <script src="bower_components/angularfire/dist/angularfire.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <!-- endbower -->
 
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-<div ng-show="isActive('/createMapState')">
+<div ng-show="vm.status">
 	<div class="top">
-	    
+	    <button ng-click="vm.logout()">Logout</button>
 	</div>
 
 	<div class="left">
@@ -51,6 +52,7 @@
 <script src="/app/guide/main.controller.js"></script>
 <script src="/app/guide/map.controller.js"></script>
 <script src="/app/guide/map.service.js"></script>
+<script src="/app/guide/register.controller.js"></script>
 <!-- endinject -->
 </body>
 </html>

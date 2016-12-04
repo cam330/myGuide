@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-   var app = angular.module('app', ['angularAudioRecorder', 'ui.router', 'firebase']);
+   var app = angular.module('app', ['angularAudioRecorder', 'ui.router', 'firebase', 'LocalStorageModule']);
 
    		app.config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
@@ -10,7 +10,7 @@
               $httpProvider.defaults.headers.put = {};
               $httpProvider.defaults.headers.patch = {};
 
-   			$urlRouterProvider.otherwise("/homePageState");
+   			$urlRouterProvider.otherwise("/registerState");
 
    			$stateProvider
    				.state('createMapState',{
@@ -35,6 +35,15 @@
             url: "/loginPage",
             templateUrl: "app/partials/loginPage.html",
             controller: 'LoginController',
+            controllerAs: 'vm',
+            data:{
+              css: 'app/styles/styles.css'
+            }
+          })
+          .state('registerState',{
+            url: "/registerState",
+            templateUrl: "app/partials/registerState.html",
+            controller: 'RegisterController',
             controllerAs: 'vm',
             data:{
               css: 'app/styles/styles.css'

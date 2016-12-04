@@ -1,4 +1,7 @@
 <div>
-	<input type="text" name="username">
-	<input type="password" name="password">
+	<input type="text" name="email" ng-model="vm.email">
+	<input type="password" name="password" ng-model="vm.password">
+</div>
+<div>
+	<button ng-click="vm.loginUser(vm.email, vm.password)">Add user</button>
 </div>
