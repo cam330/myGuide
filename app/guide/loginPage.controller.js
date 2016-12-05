@@ -46,11 +46,11 @@
 			});
 
 
-			firebase.auth().signOut().then(function() {
-					console.log("LOGGEDOUT");
-				}, function(error) {
-				  console.log("ERRRR");
-			});
+			// firebase.auth().signOut().then(function() {
+			// 		console.log("LOGGEDOUT");
+			// 	}, function(error) {
+			// 	  console.log("ERRRR");
+			// });
         }
     }
 })();

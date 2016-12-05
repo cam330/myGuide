@@ -15,10 +15,10 @@
         .module('app')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray'];
+    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray', 'localStorageService'];
 
     /* @ngInject */
-    function MapController($http, MapService, $firebaseObject, $firebaseArray, users) {
+    function MapController($http, MapService, $firebaseObject, $firebaseArray, users, localStorageService) {
         var vm = this;
 
         var rootRef = firebase.database().ref();
