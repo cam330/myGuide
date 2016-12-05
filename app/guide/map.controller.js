@@ -15,10 +15,10 @@
         .module('app')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray', 'localStorageService'];
+    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray','localStorageService'];
 
     /* @ngInject */
-    function MapController($http, MapService, $firebaseObject, $firebaseArray, users, localStorageService) {
+    function MapController($http, MapService, $firebaseObject, $firebaseArray, localStorageService) {
         var vm = this;
 
         var rootRef = firebase.database().ref();
@@ -30,6 +30,11 @@
         vm.title = 'MapController';
         vm.pointsArray = [];
         vm.detailsArray = [];
+        vm.selectedWords = [];
+        vm.finishTourArray=[];
+
+        vm.keyWordsArray = ["Architecture", "Art", "Religion", "Youth Orenited", "Overview", "Cultural", "Non-Religious", "Simple", "Heritage", "Archaeology", "Conspiracy", "Ghost", "Dark", "Explicit"];
+        vm.prices = ["Free", 0.99, 1.99, 2.99, 3.99, 4.99, 5.99, 6.99, 7.99, 8.99, 9.99];
 
         //Used for moving the point
         window.onload = addListeners;
@@ -43,7 +48,8 @@
         ////////////////
 
         function activate() {
-
+            vm.attraction = localStorageService.get('attraction');
+            vm.country = localStorageService.get('country');
         	vm.enablePointAdd = false;
             vm.showAddDetailView = false;
 
@@ -142,20 +148,18 @@
 
         vm.addDetail = function(title){
         	vm.pointTitle = "";
-			vm.pointDetails = "";
             vm.dataString = MapService.returnBlob();
             vm.dataString = vm.dataString.substring(22);
         	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : vm.dataString});
         	console.log(vm.detailsArray);
-            vm.showAddDetailView = false;
-
-        }
-
-        vm.cancelDetailAdd = function(){
-            vm.pointTitle = "";
             vm.pointDetails = "";
             vm.showAddDetailView = false;
+
         }
+
+        // vm.cancelDetailAdd = function(){
+            
+        // }
 
         vm.apiTestButton = function(){
             //*** BELOW FOR USING MONGODB
@@ -188,7 +192,82 @@
         }
 
         vm.apiPostButton = function(){
-            rootRef.child('tours').child('france').set({array: vm.detailsArray});
+            rootRef.child(vm.country).child(vm.attraction).child(vm.tourId).set(vm.finishTourArray);
+        }
+
+        vm.showFinishTourPrompt = function(){
+            vm.showFinishDiv = true;
+        }
+
+        // vm.cancelFinish = function(){
+        //     vm.showFinishDiv = false;
+
+        // }
+
+        vm.cancel = function(){
+            vm.pointTitle = "";
+            vm.pointDetails = "";
+            vm.showAddDetailView = false;
+            vm.showFinishDiv = false;
+            vm.showPricePicker = false;
+        }
+
+        vm.selectKeyWord = function(word){
+            if(vm.selectedWords.length > 2){
+                for(var i = 0; i < vm.selectedWords.length; i++){
+                    if(vm.selectedWords[i].match(word)){
+                    
+                        var wordIndex = vm.selectedWords.indexOf(word);
+                        vm.selectedWords.splice(wordIndex, 1);
+                        // vm.selectedWords.remove(word);
+                    }
+                }
+            }else {
+                vm.selectedWords.push(word);
+            }
+        }
+
+        vm.finishTour = function(){
+            
+
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                console.log(user.uid);
+                console.log(user.uid + Date.now());
+                vm.tourId = user.uid + Date.now();
+              } else {
+                // No user is signed in.
+              }
+            });
+
+            vm.showFinishDiv = false;
+            vm.showPricePicker = true;
+
+        }
+
+        vm.publishTour = function(){
+
+            vm.finishTourArray.push({title: vm.tourTitle, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
+            console.log(vm.finishTourArray);
         }
     }
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

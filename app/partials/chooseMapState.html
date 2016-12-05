@@ -1,14 +1,14 @@
 <div id="countriesTableDiv" class="col-sm-3">
 	<table class="table table-bordered table-hover">
-		<tr ng-repeat="country in vm.countriesArray" class="clickable-row">
-			<td ng-click="vm.clickedCountry($index)" ng-model="vm.country">{{country}}</td>
+		<tr ng-repeat="country in vm.placesArray" class="clickable-row">
+			<td ng-click="vm.clickedCountry($index, country.country)" ng-model="vm.country">{{country.country}}</td>
 		</tr>
 	</table>
 </div>
 <div id="attractionsTableDiv" class="col-sm-offset-1 col-sm-3">
 	<table class="table table-bordered table-hover">
 		<tr ng-repeat="place in vm.attractionsArray" class="clickable-row">
-			<td ng-click="vm.clickedAttraction($index)">{{place}}</td>
+			<td ng-click="vm.clickedAttraction(place)">{{place}}</td>
 		</tr>
 	</table>
 </div>
