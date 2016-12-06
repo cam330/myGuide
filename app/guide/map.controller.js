@@ -192,7 +192,7 @@
         }
 
         vm.apiPostButton = function(){
-            rootRef.child(vm.country).child(vm.attraction).child(vm.tourId).set(vm.finishTourArray);
+            rootRef.child('tours').child(vm.tourId).set(vm.finishTourArray);
         }
 
         vm.showFinishTourPrompt = function(){
@@ -247,7 +247,7 @@
 
         vm.publishTour = function(){
 
-            vm.finishTourArray.push({title: vm.tourTitle, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
+            vm.finishTourArray.push({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
             console.log(vm.finishTourArray);
         }
     }

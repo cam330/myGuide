@@ -57,28 +57,28 @@
   padding-top: 2em;
   padding-left: 1em;
 }
-
+/*
 .top {
   position:absolute;
   left:0; 
   right:0;
   height: 5em;
   background: grey;
-}
+}*/
 
 .left {
-  position:absolute;
+  position:fixed;
   left:0; 
-  top: 5em; 
+  top: 0em; 
   bottom: 0em;
   width: 15em;
-  background: #ccc;
+  background: #888;
 }
 
 .main {
   position: absolute;
   left:16em; 
-  top:5em; 
+  top:2em; 
   right:0; 
   bottom:0;
 }
@@ -87,6 +87,8 @@
   height: 15em;
   width: 73em;
   border: 1px solid #ccc;
+  border-radius: 1em;
+  background-color: #eee;
 }
 
 #countriesTableDiv {
@@ -110,8 +112,41 @@
   border: 1px solid #ccc;
 }
 
+#toursAndRating {
+  margin-top: 3em;
+  margin-left: 3em;
+  border: 1px solid #ccc;
+  height: 18em;
+  background-color: #ddd;
+  border-radius: 1em;
+}
 
+#tourDisplayDiv {
+  padding-top: .2em;
+  padding-left: 1em;
+  margin-top: .5em;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: .3em;
+}
 
+#numberOfDownloads {
+  padding: 3em;
+}
+
+#profilePicture {
+  margin: 2em;
+  height: 10em;
+  width: 10em;
+  border-radius: 10em;
+  border: 1.7px solid black;
+}
+
+#sideNavItem {
+  margin-top: -1em;
+  color: white;
+  font-size: 1.7em;
+}
 
 
 

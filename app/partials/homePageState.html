@@ -3,6 +3,26 @@
 <div id="analyticsDiv">
 	<div id="numberOfDownloads">
 		<h1>{{vm.numberOfDownloads}}</h1>
-		<h2>Number of Downloads</h2>
+		<h3>Number of Downloads</h3>
+	</div>
+</div>
+<button ng-click="vm.showing()">SHOW</button>
+<div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
+	<label style="font-size: 1.5em">Tours</label>
+	<div>
+		<div id='tourDisplayDiv' ng-repeat="tour in vm.toursArray">
+			<h4>{{tour.title}}</h4></br>
+			<label>{{tour.attraction}}, {{tour.country}}</label>
+		</div>
+	</div>
+</div>
+
+<div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
+	<label style="font-size: 1.5em">Reviews</label>
+	<div>
+		<div id='tourDisplayDiv' ng-repeat="tour in vm.toursArray">
+			<h4>{{tour.description}}</h4></br>
+			<label>{{tour.price}}</label>
+		</div>
 	</div>
 </div>

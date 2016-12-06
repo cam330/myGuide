@@ -28,15 +28,17 @@
 
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <div ng-show="vm.status">
-	<div class="top">
-	    <button ng-click="vm.logout()">Logout</button>
-	</div>
+<!-- 	<div class="top">
+	    
+	</div> -->
 
 	<div class="left">
+	<img id="profilePicture" src="app/img/profilePicture.jpg">
 	  <a id="sideNavItem" ui-sref="homePageState">Home</a><br> 
 	  <a id="sideNavItem" ui-sref="chooseMapState">Create a Tour</a><br> 
 	  <a id="sideNavItem" href="#">Store</a><br>
 	  <a id="sideNavItem" href="#">Settings</a><br>
+	  <a id="sideNavItem" href="#" ng-click="vm.logout()">Logout</a><br>
 	</div>
 </div>
 <div class="main">
