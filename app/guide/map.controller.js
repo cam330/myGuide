@@ -192,7 +192,8 @@
         }
 
         vm.apiPostButton = function(){
-            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice});
+            rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
         }
 
         vm.showFinishTourPrompt = function(){
@@ -248,6 +249,7 @@
         vm.publishTour = function(){
 
             vm.finishTourArray.push({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
+
             console.log(vm.finishTourArray);
         }
     }

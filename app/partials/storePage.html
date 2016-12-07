@@ -1,0 +1,17 @@
+<h1>Store</h1>
+<div class="row">
+	<ul ng-repeat="tour in vm.toursArray">
+		<div id="tourCellDiv" class="col-sm-3">
+			<div id="tourHeadingDiv" style="padding-top: .3em;">
+				<label style="margin-left: .7em;">3h:35m</label>
+				<label style="margin-left: 50%; margin-right: 0%">★★★★★</label>
+
+			</div>
+			<div id="tourCellDetailsDiv" style=" text-align: center;">
+					<label style="font-size: 1.3em">{{tour.title}}</label><br/>
+					<label style="font-size: 1em">{{tour.guide}}</label><br/>
+					<label style="font-size: .7em;">{{tour.keyWords}}</label>
+			</div>
+		</div>
+	</ul>
+</div>

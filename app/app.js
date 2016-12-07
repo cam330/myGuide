@@ -10,7 +10,7 @@
               $httpProvider.defaults.headers.put = {};
               $httpProvider.defaults.headers.patch = {};
 
-   			$urlRouterProvider.otherwise("/chooseMapState");
+   			$urlRouterProvider.otherwise("/storePage");
 
    			$stateProvider
    				.state('createMapState',{
@@ -53,6 +53,15 @@
             url: "/chooseMapState",
             templateUrl: "app/partials/chooseMapState.html",
             controller: 'ChooseMapController',
+            controllerAs: 'vm',
+            data:{
+              css: 'app/styles/styles.css'
+            }
+          })
+          .state('storePage',{
+            url: "/storePage",
+            templateUrl: "app/partials/storePage.html",
+            controller: 'StoreController',
             controllerAs: 'vm',
             data:{
               css: 'app/styles/styles.css'

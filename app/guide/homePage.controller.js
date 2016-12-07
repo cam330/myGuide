@@ -5,10 +5,10 @@
         .module('app')
         .controller('HomePageController', HomePageController);
 
-    HomePageController.$inject = ['$http', '$state', '$firebaseObject', '$firebaseArray', 'localStorageService'];
+    HomePageController.$inject = ['$http', '$state', '$firebaseObject', '$firebaseArray', 'localStorageService', '$interval'];
 
     /* @ngInject */
-    function HomePageController($http, $state, $firebaseObject, $firebaseArray, localStorageService) {
+    function HomePageController($http, $state, $firebaseObject, $firebaseArray, localStorageService, $interval) {
         var vm = this;
         vm.title = 'Controller';
         vm.toursArray = [];
@@ -34,16 +34,20 @@
 			    var userId = user.uid;
 			    var userRef = rootRef.child('users').child(userId);
 
+                //$interval refreshes page when teh tours and reviews are loaded
+                $interval(function(){});
                 var object = $firebaseObject(userRef);
                 object.$loaded().then(function(data){
-                    console.log(data.tours.id);
+                    console.log(data);
+                    console.log(data.tours);
                     vm.numberOfDownloads = data.Downloads;
                     vm.name = data.name;
                     var tempArray = data.tours;
             for(var i = 0; i < tempArray.length; i++){
                 rootRef.child('tours').child(tempArray[i]).once('value', function(snap){
+                    console.log(snap.val());
                     var x = snap.val();
-                    vm.toursArray.push(x[0]);
+                    vm.toursArray.push(x);
                     console.log(vm.toursArray);
 
                 });
@@ -58,10 +62,6 @@
 			    $state.go('loginPage');
 			  }
 			});
-
-            vm.showing = function(){
-                console.log(vm.toursArray);
-            }
         }
     }
 })();
