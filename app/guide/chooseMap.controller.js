@@ -11,6 +11,7 @@
     function ChooseMapController($http, $state, localStorageService) {
         var vm = this;
         vm.title = 'ChooseMapController';
+        vm.chosenTour = 'Choose a Map';
 
         vm.countriesArray = ["Spain", "France", "Germany", "United States", "Russia", "China"];
         vm.franceArray = ["Eiffel Tower", "Notre Dame", "Arc de Triomphe", "French Riviera", "The Louvre"];
@@ -49,6 +50,7 @@
 
             vm.country = country;
         	vm.attractionsArray = vm.placesArray[countryIndex].attraction;
+            vm.chosenTour = country;
 
         }
 

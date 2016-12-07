@@ -192,7 +192,7 @@
         }
 
         vm.apiPostButton = function(){
-            rootRef.child('tours').child(vm.tourId).set(vm.finishTourArray);
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
         }
 
         vm.showFinishTourPrompt = function(){
