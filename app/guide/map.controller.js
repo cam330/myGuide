@@ -54,6 +54,18 @@
             vm.showAddDetailView = false;
 
         	console.log(vm.enablePointAdd);
+
+
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                console.log(user.uid);
+                console.log(user.uid + Date.now());
+                vm.tourId = user.uid + Date.now();
+                vm.currentUser = user.uid
+              } else {
+                // No user is signed in.
+              }
+            });
         	
         }
 
@@ -192,8 +204,12 @@
         }
 
         vm.apiPostButton = function(){
-            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice});
+
+            rootRef
+
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0});
             rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
+            rootRef.child('users').child(vm.currentUser).child("tours").child.set({time : vm.tourId});
         }
 
         vm.showFinishTourPrompt = function(){
@@ -229,17 +245,6 @@
         }
 
         vm.finishTour = function(){
-            
-
-            firebase.auth().onAuthStateChanged(function(user) {
-              if (user) {
-                console.log(user.uid);
-                console.log(user.uid + Date.now());
-                vm.tourId = user.uid + Date.now();
-              } else {
-                // No user is signed in.
-              }
-            });
 
             vm.showFinishDiv = false;
             vm.showPricePicker = true;
