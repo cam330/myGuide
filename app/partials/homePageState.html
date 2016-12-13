@@ -5,6 +5,10 @@
 		<h1>{{vm.numberOfDownloads}}</h1>
 		<h3>Number of Downloads</h3>
 	</div>
+
+	<div>
+		<canvas id='line' class="chart chart-line" chart-data="data" chart-label="labels" chart-series="series" chart-options="options" chart-dataset-override='datasetOverride' chart-click="onClick"></canvas>
+	</div>
 </div>
 <div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
 	<label style="font-size: 1.5em">Tours</label>

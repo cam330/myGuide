@@ -20,7 +20,8 @@
     "requirejs": "^2.3.2",
     "firebase": "^3.6.2",
     "angularfire": "^2.1.0",
-    "angular-local-storage": "^0.5.2"
+    "angular-local-storage": "^0.5.2",
+    "angular-file-upload": "^2.4.0"
   },
   "overrides": {
     "bootstrap": {

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "angular-chart.js": "^1.1.1",
     "file-system": "^2.2.2",
     "firebase": "^3.6.2",
     "gulp": "^3.9.1",

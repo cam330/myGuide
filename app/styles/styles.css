@@ -177,7 +177,21 @@
 }
 
 
+#mapsDisplayDiv {
+  border: 1px solid #ccc;
+}
 
+#mapThumbnail {
+  height: 15em;
+  width: 12em;
+}
+
+#mapThumbnailDiv {
+  height: 20em;
+  width: 15em;
+  margin: 3em;
+  border: 2px solid #eee
+}
 
 
 
