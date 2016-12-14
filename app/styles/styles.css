@@ -18,6 +18,11 @@
 
 }
 
+.chart {
+ width: 42.5em;
+ height: 13em;
+}
+
 .addText2{
 	border: 0;
   position: absolute;
@@ -184,6 +189,9 @@
 #mapThumbnail {
   height: 15em;
   width: 12em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
 }
 
 #mapThumbnailDiv {
@@ -193,7 +201,9 @@
   border: 2px solid #eee
 }
 
-
+#homePage {
+  position: fixed;
+}
 
 
 

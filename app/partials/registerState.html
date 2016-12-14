@@ -1,9 +1,10 @@
 <div>
-	<input type="email" name="email" placeholder="email" ng-model="vm.email">
+	<input type="email" name="email" placeholder="email" ng-model="vm.email" text="HELLOOO">
 	<input type="text" name="name" placeholder="name" ng-model="vm.name">
+	<input type="text" name="location" placeholder="Eg. San Diego, CA, USA" ng-model="vm.location">
 	<input type="password" name="password" placeholder="password" ng-model="vm.password">
 	<input type="password" name="rePassword" placeholder="rePassword" ng-model="vm.rePassword">
 </div>
 <div>
-	<button ng-click="vm.register(vm.email, vm.name, vm.password)">Register</button>
+	<button ng-click="vm.register(vm.email, vm.name, vm.password, vm.location)">Register</button>
 </div>

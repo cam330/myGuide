@@ -34,14 +34,17 @@
 		  <div ng-if="!recorder.isAvailable">
 		    Message for users when recording is not possible.
 		  </div>
+		  <h1>{{recorder}}</h1>
 
 		<h2>{{recorder.elapsedTime}}</h2>
 			  
 		  <!-- End controls-->
 		</ng-audio-recorder>
 
+		<progress value="3" max="4" class="col-sm-12"></progress>
+
 	<button class="btn btn-success col-sm-12" ng-click="vm.addDetail(vm.pointTitle)">Add Point</button>
-	<button class="btn col-sm-12" ng-click="vm.cancel()">Cancel</button>
+	<button class="btn col-sm-12" ng-click="vm.cancelPointAdd()">Cancel</button>
 
 </div>
 

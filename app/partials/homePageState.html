@@ -1,15 +1,23 @@
+<div id="homePage">
 <h1>Welcome, {{vm.name}}</h1>
 
 <div id="analyticsDiv">
-	<div id="numberOfDownloads">
+	<div id="numberOfDownloads" class="col-sm-4">
 		<h1>{{vm.numberOfDownloads}}</h1>
 		<h3>Number of Downloads</h3>
 	</div>
 
-	<div>
-		<canvas id='line' class="chart chart-line" chart-data="data" chart-label="labels" chart-series="series" chart-options="options" chart-dataset-override='datasetOverride' chart-click="onClick"></canvas>
-	</div>
+
+		<div 
+		    data-ac-chart="'line'" 
+		    data-ac-data="vm.data" 
+		    data-ac-config="vm.config"
+		    class="chart col-sm-6 col-sm-offset-1">
+		</div>
+
+
 </div>
+
 <div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
 	<label style="font-size: 1.5em">Tours</label>
 	<div>
@@ -23,9 +31,13 @@
 <div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
 	<label style="font-size: 1.5em">Reviews</label>
 	<div>
-		<div id='tourDisplayDiv' ng-repeat="tour in vm.toursArray">
-			<h4>{{tour.description}}</h4></br>
-			<label>{{tour.price}}</label>
+		<div id='tourDisplayDiv' ng-repeat="review in vm.reviewsArray">
+			<label>{{review}}</label>
+			<div ng-repeat="entry in review">
+				<h4>{{entry.rating}}</h4></br>
+				<label>{{entry.comment}}</label>
+			</div>
 		</div>
 	</div>
+</div>
 </div>

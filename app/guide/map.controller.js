@@ -15,10 +15,10 @@
         .module('app')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray','localStorageService'];
+    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray','localStorageService', '$timeout'];
 
     /* @ngInject */
-    function MapController($http, MapService, $firebaseObject, $firebaseArray, localStorageService) {
+    function MapController($http, MapService, $firebaseObject, $firebaseArray, localStorageService, $timeout) {
         var vm = this;
 
         var rootRef = firebase.database().ref();
@@ -32,6 +32,9 @@
         vm.detailsArray = [];
         vm.selectedWords = [];
         vm.finishTourArray=[];
+
+        vm.counter = 0;
+        var mytimeout = null;
 
         vm.keyWordsArray = ["Architecture", "Art", "Religion", "Youth Orenited", "Overview", "Cultural", "Non-Religious", "Simple", "Heritage", "Archaeology", "Conspiracy", "Ghost", "Dark", "Explicit"];
         vm.prices = ["Free", 0.99, 1.99, 2.99, 3.99, 4.99, 5.99, 6.99, 7.99, 8.99, 9.99];
@@ -66,8 +69,51 @@
                 // No user is signed in.
               }
             });
+
+            vm.updateValue = function(){
+                $timeout(function(){
+                    vm.counter++;
+                    vm.updateValue();
+                    console.log(vm.counter);
+                    if(vm.counter > 5){
+                        $timeout.cancel(vm.updateValue);
+                    }
+                },1000);
+            } 
+
+
+
+            vm.onTimeout = function() {
+                console.log(vm.counter);
+        if(vm.counter ===  5) {
+            $timeout.cancel(mytimeout);
+            console.log("ENDED");
+            return;
+        }
+        vm.counter++;
+        mytimeout = $timeout(vm.onTimeout, 1000);
+    };
+    vm.startTimer = function() {
+        mytimeout = $timeout(vm.onTimeout, 1000);
+        console.log("START")
+    };
+    // // stops and resets the current timer
+    // vm.stopTimer = function() {
+    //     console.log("ENDED")
+    //     // vm.$broadcast('timer-stopped', vm.counter);
+    //     vm.counter = 0;
+    //     $timeout.cancel(mytimeout);
+
+    // };
+
+
+            
+            
+            console.log(vm.counter);
         	
         }
+
+        vm.startTimer();
 
         vm.addPoint = function(){
         	vm.enablePointAdd =true;
@@ -227,6 +273,17 @@
             vm.showAddDetailView = false;
             vm.showFinishDiv = false;
             vm.showPricePicker = false;
+        }
+
+        vm.cancelPointAdd = function(){
+            vm.pointTitle = "";
+            vm.pointDetails = "";
+            vm.showAddDetailView = false;
+            vm.showFinishDiv = false;
+            vm.showPricePicker = false;
+
+            document.getElementById("point" + vm.pointsArray.length).remove();
+            vm.pointsArray.splice(-1,1);
         }
 
         vm.selectKeyWord = function(word){

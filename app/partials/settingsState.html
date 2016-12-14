@@ -1,0 +1,30 @@
+<div>
+	<img ng-click="vm.changePhoto()" id="profilePicture" src="app/img/profilePicture.jpg">
+</div>
+
+<div id="userDetailsSettingsDiv">
+	<div>
+		<label>Name</label>
+		<input type="text" name="name" ng-model="vm.name">
+		<label>Location</label>
+		<input type="text" name="location" ng-model="vm.location">
+		<label>Email</label>
+		<input type="email" name="email" ng-model="vm.email">
+
+	</div>
+	<div>
+		<button>Save</button>
+		<button>Change Password</button>
+	</div>
+</div>
+
+<div>
+	<label>Old Password</label>
+	<input type="Password" name="oldPassword" ng-model="vm.oldPassword">
+	<label>New Password</label>
+	<input type="Password" name="newPassword" ng-model="vm.newPassword">
+	<label>New Password (again)</label>
+	<input type="Password" name="reNewPassword" ng-model="vm.reNewPassword">
+	<button ng-click="vm.updatePassword(vm.oldPassword, vm.newPassword, vm.reNewPassword)">Update</button>
+	<button>Cancel</button>
+</div>

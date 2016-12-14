@@ -23,7 +23,7 @@
     	localStorageService.set("Loggedin", false);
         }
 
-        vm.register = function(email, name, password){
+        vm.register = function(email, name, password, location){
 
         	if(!email || !name || !password || password != vm.rePassword){
 				console.log('It not right');
@@ -32,7 +32,7 @@
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(userResponse) {
 
 			var uid = firebase.auth().currentUser.uid;
-			rootRef.child('users').child(uid).set({name: name, email: email, userId: uid});
+			rootRef.child('users').child(uid).set({name: name, email: email, userId: uid, location:location});
 
 	  		$state.go("loginPage");
 

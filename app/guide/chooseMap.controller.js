@@ -48,10 +48,10 @@
 
         }
 
-        vm.clickedAttraction = function(place){
+        vm.clickedAttraction = function(place, country){
         	console.log(place);
             localStorageService.set('attraction', place);
-            localStorageService.set('country', vm.country);
+            localStorageService.set('country', country);
         	$state.go('createMapState');
 
         }
