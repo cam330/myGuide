@@ -21,7 +21,7 @@
 <div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
 	<label style="font-size: 1.5em">Tours</label>
 	<div>
-		<div id='tourDisplayDiv' ng-repeat="tour in vm.toursArray">
+		<div id='tourDisplayDiv' ng-repeat="tour in vm.myToursArray">
 			<h4>{{tour.title}}</h4></br>
 			<label>{{tour.attraction}}, {{tour.country}}</label>
 		</div>
@@ -32,9 +32,10 @@
 	<label style="font-size: 1.5em">Reviews</label>
 	<div>
 		<div id='tourDisplayDiv' ng-repeat="review in vm.reviewsArray">
-			<label>{{review}}</label>
+			<!-- <label>{{review}}</label> -->
 			<div ng-repeat="entry in review">
 				<h4>{{entry.rating}}</h4></br>
+				<label>{{vm.reviewersArray[$index]}}</label></br>
 				<label>{{entry.comment}}</label>
 			</div>
 		</div>

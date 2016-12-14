@@ -33,11 +33,11 @@
         vm.selectedWords = [];
         vm.finishTourArray=[];
 
-        vm.counter = 0;
-        var mytimeout = null;
+        vm.totalDuration = 0;
+
 
         vm.keyWordsArray = ["Architecture", "Art", "Religion", "Youth Orenited", "Overview", "Cultural", "Non-Religious", "Simple", "Heritage", "Archaeology", "Conspiracy", "Ghost", "Dark", "Explicit"];
-        vm.prices = ["Free", 0.99, 1.99, 2.99, 3.99, 4.99, 5.99, 6.99, 7.99, 8.99, 9.99];
+        vm.prices = [0.99, 1.99, 2.99, 3.99, 4.99, 5.99, 6.99, 7.99, 8.99, 9.99];
 
         //Used for moving the point
         window.onload = addListeners;
@@ -69,51 +69,10 @@
                 // No user is signed in.
               }
             });
-
-            vm.updateValue = function(){
-                $timeout(function(){
-                    vm.counter++;
-                    vm.updateValue();
-                    console.log(vm.counter);
-                    if(vm.counter > 5){
-                        $timeout.cancel(vm.updateValue);
-                    }
-                },1000);
-            } 
-
-
-
-            vm.onTimeout = function() {
-                console.log(vm.counter);
-        if(vm.counter ===  5) {
-            $timeout.cancel(mytimeout);
-            console.log("ENDED");
-            return;
-        }
-        vm.counter++;
-        mytimeout = $timeout(vm.onTimeout, 1000);
-    };
-    vm.startTimer = function() {
-        mytimeout = $timeout(vm.onTimeout, 1000);
-        console.log("START")
-    };
-    // // stops and resets the current timer
-    // vm.stopTimer = function() {
-    //     console.log("ENDED")
-    //     // vm.$broadcast('timer-stopped', vm.counter);
-    //     vm.counter = 0;
-    //     $timeout.cancel(mytimeout);
-
-    // };
-
-
-            
-            
-            console.log(vm.counter);
         	
         }
 
-        vm.startTimer();
+        // vm.startTimer();
 
         vm.addPoint = function(){
         	vm.enablePointAdd =true;
@@ -208,11 +167,13 @@
         	vm.pointTitle = "";
             vm.dataString = MapService.returnBlob();
             vm.dataString = vm.dataString.substring(22);
-        	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : vm.dataString});
+            vm.pointTime = MapService.returnTime();
+        	vm.detailsArray.push({'title' : title, 'id' : vm.detailButtonid, 'detail' : vm.pointDetails, 'percentTop' : vm.percentH, 'percentLeft' : vm.percentW, 'audio' : vm.dataString, 'duration' : vm.pointTime});
         	console.log(vm.detailsArray);
             vm.pointDetails = "";
             vm.showAddDetailView = false;
-
+            vm.totalDuration += vm.pointTime;
+            console.log(vm.totalDuration);
         }
 
         // vm.cancelDetailAdd = function(){
@@ -253,7 +214,7 @@
 
             rootRef
 
-            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0});
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, sampleAudio: vm.sampleAudio});
             rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
             rootRef.child('users').child(vm.currentUser).child("tours").child.set({time : vm.tourId});
         }
@@ -306,11 +267,14 @@
             vm.showFinishDiv = false;
             vm.showPricePicker = true;
 
+            vm.sampleAudio = MapService.returnBlob();
+            console.log(vm.sampleAudio);
+
         }
 
         vm.publishTour = function(){
 
-            vm.finishTourArray.push({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray});
+            vm.finishTourArray.push({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray, sampleAudio: vm.sampleAudio});
 
             console.log(vm.finishTourArray);
         }

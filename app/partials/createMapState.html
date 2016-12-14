@@ -34,14 +34,16 @@
 		  <div ng-if="!recorder.isAvailable">
 		    Message for users when recording is not possible.
 		  </div>
-		  <h1>{{recorder}}</h1>
+		  <h1>{{recorder.upCount}}</h1>
 
 		<h2>{{recorder.elapsedTime}}</h2>
+
+		<progress value="{{recorder.upCount}}" max="{{recorder.elapsedTime}}" class="col-sm-12"></progress>
 			  
 		  <!-- End controls-->
 		</ng-audio-recorder>
 
-		<progress value="3" max="4" class="col-sm-12"></progress>
+		
 
 	<button class="btn btn-success col-sm-12" ng-click="vm.addDetail(vm.pointTitle)">Add Point</button>
 	<button class="btn col-sm-12" ng-click="vm.cancelPointAdd()">Cancel</button>
@@ -51,7 +53,7 @@
 <div id="finishTourDiv" class="col-sm-6" ng-show="vm.showFinishDiv">
 	<input class="form-control" type="text" name="tourTitle" placeholder="Tour Title" ng-model="vm.tourTitle">
 	<textarea class="form-control" placeholder="Add a desription" ng-model="vm.tourDescription"></textarea>
-	<label>Total duration: 1h 35m</label>
+	<label>{{vm.totalDuration}}</label>
 	<div class="col-sm-12">
 		<label>Record a sample</label>
 		<ng-audio-recorder id='audioInput' audio-model='recordedInput'>
@@ -74,6 +76,8 @@
 		  </div>
 
 		<h2>{{recorder.elapsedTime}}</h2>
+
+		<progress value="{{recorder.upCount}}" max="{{recorder.elapsedTime}}" class="col-sm-12"></progress>
 			  
 		  <!-- End controls-->
 		</ng-audio-recorder>

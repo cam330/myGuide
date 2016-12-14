@@ -11,6 +11,7 @@
     function MapService($http, $firebaseObject, firebaseArray) {
         // this.func = func;
         var passedBlob = '';
+        var elapsedTime = '';
 
         var rootRef = firebase.database().ref();
 
@@ -19,12 +20,17 @@
         // function func() {
         // }
 
-        this.passedAudioBlob = function(blob){
+        this.passedAudioBlob = function(blob, time){
         	passedBlob = blob;
+            elapsedTime = time
         }
 
         this.returnBlob = function(){
         	return passedBlob;
+        }
+
+        this.returnTime = function(){
+            return elapsedTime;
         }
 
         this.getTour = function(){
