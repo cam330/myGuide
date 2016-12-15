@@ -15,10 +15,10 @@
         .module('app')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray','localStorageService', '$timeout'];
+    MapController.$inject = ['$http', 'MapService', '$firebaseObject', '$firebaseArray','localStorageService', '$timeout', '$state'];
 
     /* @ngInject */
-    function MapController($http, MapService, $firebaseObject, $firebaseArray, localStorageService, $timeout) {
+    function MapController($http, MapService, $firebaseObject, $firebaseArray, localStorageService, $timeout, $state) {
         var vm = this;
 
         var rootRef = firebase.database().ref();
@@ -211,16 +211,13 @@
             // });
         }
 
-        vm.apiPostButton = function(){
+        // vm.apiPostButton = function(){
 
-            rootRef
+        //     rootRef
 
 
-            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, sampleAudio: vm.sampleAudio, guide: vm.currentUser});
-            rootRef.child('tours').child(vm.tourId).child('reviews').set({count: 0, total: 0});
-            rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
-            rootRef.child('users').child(vm.currentUser).child("tours").child(vm.tourId).set({created : Date.now()});
-        }
+
+        // }
 
         vm.showFinishTourPrompt = function(){
             vm.showFinishDiv = true;
@@ -278,9 +275,17 @@
 
         vm.publishTour = function(){
 
-            vm.finishTourArray.push({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray, sampleAudio: vm.sampleAudio});
+            // vm.finishTourArray.push({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, points: vm.detailsArray, sampleAudio: vm.sampleAudio});
 
-            console.log(vm.finishTourArray);
+            // console.log(vm.finishTourArray);
+
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, guide: vm.currentUser});
+            rootRef.child('tours').child(vm.tourId).child('reviews').set({count: 0, total: 0});
+            rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
+            rootRef.child('users').child(vm.currentUser).child("tours").child(vm.tourId).set({created : Date.now()});
+            rootRef.child('audioSamples').child(vm.tourId).set(vm.sampleAudio);
+
+            $state.go("homePageState");
         }
     }
 })();
