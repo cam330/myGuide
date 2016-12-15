@@ -21,9 +21,17 @@
 <div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
 	<label style="font-size: 1.5em">Tours</label>
 	<div>
-		<div id='tourDisplayDiv' ng-repeat="tour in vm.myToursArray">
-			<h4>{{tour.title}}</h4></br>
-			<label>{{tour.attraction}}, {{tour.country}}</label>
+		<div id='tourDisplayDiv'>
+			<font size="3" class="col-sm-6">{{vm.myToursArray[1].title}}</font>
+			<font size="2.5" class="col-sm-6">{{vm.myToursArray[1].attraction}}, {{vm.myToursArray[1].country}}</font>
+		</div>
+		<div id='tourDisplayDiv'>
+			<font size="3" class="col-sm-6">{{vm.myToursArray[2].title}}</font>
+			<font size="2.5" class="col-sm-6">{{vm.myToursArray[2].attraction}}, {{vm.myToursArray[2].country}}</font>
+		</div>
+		<div id='tourDisplayDiv'>
+			<font size="3" class="col-sm-6">{{vm.myToursArray[3].title}}</font>
+			<font size="2.5" class="col-sm-6">{{vm.myToursArray[3].attraction}}, {{vm.myToursArray[3].country}}</font>
 		</div>
 	</div>
 </div>
@@ -31,7 +39,31 @@
 <div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
 	<label style="font-size: 1.5em">Reviews</label>
 	<div>
-		<div id='tourDisplayDiv' ng-repeat="review in vm.reviewsArray">
+		<div id='reviewDisplayDiv'>
+			<!-- <label>{{review}}</label> -->
+			<div ng-repeat="entry in review">
+				<h4>{{entry.rating}}</h4></br>
+				<label>{{vm.reviewersArray[$index]}}</label></br>
+				<label>{{entry.comment}}</label>
+			</div>
+		</div>
+		<div id='reviewDisplayDiv'>
+			<!-- <label>{{review}}</label> -->
+			<div ng-repeat="entry in review">
+				<h4>{{entry.rating}}</h4></br>
+				<label>{{vm.reviewersArray[$index]}}</label></br>
+				<label>{{entry.comment}}</label>
+			</div>
+		</div>
+		<div id='reviewDisplayDiv'>
+			<!-- <label>{{review}}</label> -->
+			<div ng-repeat="entry in review">
+				<h4>{{entry.rating}}</h4></br>
+				<label>{{vm.reviewersArray[$index]}}</label></br>
+				<label>{{entry.comment}}</label>
+			</div>
+		</div>
+		<div id='reviewDisplayDiv'>
 			<!-- <label>{{review}}</label> -->
 			<div ng-repeat="entry in review">
 				<h4>{{entry.rating}}</h4></br>

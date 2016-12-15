@@ -134,6 +134,7 @@
         		newButton.style[ property ] = elStyle[ property ];
         		newButton.id = "point" + vm.pointsArray.length;
         		newButton.value = vm.pointsArray.length;
+                newButton.class = "pointButton"
         		newButton.onclick = function(){
         			// console.log(vm.detailsArray[newButton.value-1].title + vm.detailsArray[newButton.value-1].detail);
         			// vm.pointSelected = vm.detailsArray[newButton.value-1].title;
@@ -214,9 +215,11 @@
 
             rootRef
 
-            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, sampleAudio: vm.sampleAudio});
+
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, sampleAudio: vm.sampleAudio, guide: vm.currentUser});
+            rootRef.child('tours').child(vm.tourId).child('reviews').set({count: 0, total: 0});
             rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
-            rootRef.child('users').child(vm.currentUser).child("tours").child.set({time : vm.tourId});
+            rootRef.child('users').child(vm.currentUser).child("tours").child(vm.tourId).set({created : Date.now()});
         }
 
         vm.showFinishTourPrompt = function(){
@@ -268,6 +271,7 @@
             vm.showPricePicker = true;
 
             vm.sampleAudio = MapService.returnBlob();
+            vm.sampleAudio = vm.sampleAudio.substring(22);
             console.log(vm.sampleAudio);
 
         }

@@ -4,15 +4,27 @@
 </div>
 <div class="clickDiv">
 	<div id="imageDiv">
-		<img src="app/img/{{vm.attraction}}.jpg" ng-click="vm.addOnClick($event)" id="img">
+		<img src="app/img/{{vm.attraction}}.jpg" ng-click="vm.addOnClick($event)" id="img"  data-toggle="modal" data-target="#detailModal">
 	</div>
-	<button id='dxy' class="addText1" ng-click="vm.detailBtn('HELLO')" ng-model="vm.btn">1</button>
+<!-- 	<button id='dxy' class="addText1" ng-click="vm.detailBtn('HELLO')" ng-model="vm.btn">1</button> -->
 <!-- 	<button style="top:30% right:40%" class="addText2" ng-click="vm.detailBtn('hello')" ng-model="vm.btn">2</button> -->
 </div>
 
-<div id="addingPointDetailsDiv" class="col-sm-5" ng-show="vm.showAddDetailView">
-	<label class="col-sm-offset-4 col-sm-12">Add some detail</label>
-	<input class="col-sm-12 form-control" type="text" name="pointTitle" placeholder="Title" ng-model="vm.pointTitle">
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="detailModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add some detail</h4>
+        </div>
+        <div class="modal-body">
+          
+
+<input class="col-sm-12 form-control" type="text" name="pointTitle" placeholder="Title" ng-model="vm.pointTitle">
 	<textarea class="col-sm-12 form-control" placeholder="Add some detail" ng-model="vm.pointDetails"></textarea>
 
 	<!-- Is basic audio recording from https://logbon72.github.io/angular-recorder/  -->
@@ -43,15 +55,33 @@
 		  <!-- End controls-->
 		</ng-audio-recorder>
 
-		
 
-	<button class="btn btn-success col-sm-12" ng-click="vm.addDetail(vm.pointTitle)">Add Point</button>
-	<button class="btn col-sm-12" ng-click="vm.cancelPointAdd()">Cancel</button>
 
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-success col-sm-12" ng-click="vm.addDetail(vm.pointTitle)" data-dismiss="modal">Add Point</button>
+	<button class="btn col-sm-12" ng-click="vm.cancelPointAdd()" data-dismiss="modal">Cancel</button>
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div id="finishTourDiv" class="col-sm-6" ng-show="vm.showFinishDiv">
-	<input class="form-control" type="text" name="tourTitle" placeholder="Tour Title" ng-model="vm.tourTitle">
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="finalizeModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Finalize Tour</h4>
+        </div>
+        <div class="modal-body">
+          
+
+			<input class="form-control" type="text" name="tourTitle" placeholder="Tour Title" ng-model="vm.tourTitle">
 	<textarea class="form-control" placeholder="Add a desription" ng-model="vm.tourDescription"></textarea>
 	<label>{{vm.totalDuration}}</label>
 	<div class="col-sm-12">
@@ -89,20 +119,141 @@
 			<option ng-repeat="word in vm.keyWordsArray" ng-click="vm.selectKeyWord(word)">{{word}}</option>
 		</select>
 	</div>
+
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          	<div>
+		<button class="btn" ng-click="vm.finishTour()" data-dismiss="modal" data-toggle="modal" data-target="#pricePickerModal">Finish</button>
+		<button class="btn" ng-click="vm.cancel()" data-dismiss="modal">Cancel</button>
+	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="pricePickerModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Please Pick a price and upload tour</h4>
+        </div>
+        <div class="modal-body">
+          <select class="form-control" ng-model="vm.tourPrice">
+			<option ng-repeat="price in vm.prices">{{price}}</option>
+		</select>	
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <button class="btn" ng-click="vm.publishTour()" data-dismiss="modal">Publish Tour</button>
+		  <button class="btn" ng-click="vm.cancel()" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div id="addingPointDetailsDiv" class="col-sm-5" ng-show="vm.showAddDetailView">
+	<label class="col-sm-offset-4 col-sm-12">Add some detail</label>
+	<input class="col-sm-12 form-control" type="text" name="pointTitle" placeholder="Title" ng-model="vm.pointTitle">
+	<textarea class="col-sm-12 form-control" placeholder="Add some detail" ng-model="vm.pointDetails"></textarea> -->
+
+	<!-- Is basic audio recording from https://logbon72.github.io/angular-recorder/  -->
+		<!-- <ng-audio-recorder id='audioInput' audio-model='recordedInput'> -->
+		  <!-- Start controls, exposed via recorder-->
+		 <!--  <div class="buttonRecorderDiv" ng-if="recorder.isAvailable">
+		    <button class="btn" ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording">
+		        Start Record
+		    </button>
+		    <button class="btn" ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+		        Stop Record
+		    </button>
+		    <button class="btn" ng-click="recorder.playbackRecording()" type="button"
+		            ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+		        Play Back
+		    </button>
+		  </div>
+
+		  <div ng-if="!recorder.isAvailable">
+		    Message for users when recording is not possible.
+		  </div>
+		  <h1>{{recorder.upCount}}</h1>
+
+		<h2>{{recorder.elapsedTime}}</h2>
+
+		<progress value="{{recorder.upCount}}" max="{{recorder.elapsedTime}}" class="col-sm-12"></progress> -->
+			  
+		  <!-- End controls-->
+<!-- 		</ng-audio-recorder>
+
+		
+
+	<button class="btn btn-success col-sm-12" ng-click="vm.addDetail(vm.pointTitle)">Add Point</button>
+	<button class="btn col-sm-12" ng-click="vm.cancelPointAdd()">Cancel</button>
+
+</div> -->
+<!-- 
+<div id="finishTourDiv" class="col-sm-6" ng-show="vm.showFinishDiv">
+	<input class="form-control" type="text" name="tourTitle" placeholder="Tour Title" ng-model="vm.tourTitle">
+	<textarea class="form-control" placeholder="Add a desription" ng-model="vm.tourDescription"></textarea>
+	<label>{{vm.totalDuration}}</label>
+	<div class="col-sm-12">
+		<label>Record a sample</label>
+		<ng-audio-recorder id='audioInput' audio-model='recordedInput'> -->
+		  <!-- Start controls, exposed via recorder-->
+<!-- 		  <div class="buttonRecorderDiv" ng-if="recorder.isAvailable">
+		    <button class="btn" ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording">
+		        Start Record
+		    </button>
+		    <button class="btn" ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+		        Stop Record
+		    </button>
+		    <button class="btn" ng-click="recorder.playbackRecording()" type="button"
+		            ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+		        Play Back
+		    </button>
+		  </div>
+
+		  <div ng-if="!recorder.isAvailable">
+		    Message for users when recording is not possible.
+		  </div>
+
+		<h2>{{recorder.elapsedTime}}</h2>
+
+		<progress value="{{recorder.upCount}}" max="{{recorder.elapsedTime}}" class="col-sm-12"></progress> -->
+			  
+		  <!-- End controls-->
+<!-- 		</ng-audio-recorder>
+
+	</div>
+	<div>
+		<label>{{vm.selectedWords}}</label>
+		<select class="form-control" multiple>
+			<option ng-repeat="word in vm.keyWordsArray" ng-click="vm.selectKeyWord(word)">{{word}}</option>
+		</select>
+	</div>
 	<div>
 		<button class="btn" ng-click="vm.finishTour()">Finish</button>
 		<button class="btn" ng-click="vm.cancel()">Cancel</button>
 	</div>
-</div>
+</div> -->
 
-<div id="pricePickerDiv" class="col-sm-3" ng-show="vm.showPricePicker">
+<!-- <div id="pricePickerDiv" class="col-sm-3" ng-show="vm.showPricePicker">
 	<h3>Please Pick a price and upload tour</h3>
 	<select class="form-control" ng-model="vm.tourPrice">
 		<option ng-repeat="price in vm.prices">{{price}}</option>
 	</select>
 	<button class="btn" ng-click="vm.publishTour()">Publish Tour</button>
 	<button class="btn" ng-click="vm.cancel()">Cancel</button>
-</div>
+</div> -->
 
 <!-- <ul>
 	<li ng-repeat="user in vm.user">
@@ -112,4 +263,4 @@
 
 <!-- <button ng-click="vm.apiTestButton()">Get Api</button> -->
 <button class="btn" ng-click="vm.apiPostButton()">Post Tour</button>
-<button class="btn" ng-click=(vm.showFinishTourPrompt())>Finish up</button>
+<button class="btn" ng-click=(vm.showFinishTourPrompt()) data-toggle="modal" data-target="#finalizeModal">Finish up</button>

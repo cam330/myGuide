@@ -1,9 +1,9 @@
 <div id="loginBox" class="col-sm-offset-1 col-sm-6">
 	<div>
-		<input type="text" name="email" class="form-control col-sm-12" ng-model="vm.email">
-		<input type="password" name="password" class="form-control" ng-model="vm.password">
+		<input id="emailField" type="text" name="email" class="form-control col-sm-12" ng-model="vm.email">
+		<input id="passwordField" type="password" name="password" class="form-control" ng-model="vm.password">
 	</div>
 	<div>
-		<button class="btn col-sm-offset-5" ng-click="vm.loginUser(vm.email, vm.password)">Add user</button>
+		<button id="loginButton" class="btn btn-lg col-sm-offset-5" ng-click="vm.loginUser(vm.email, vm.password)">Login</button>
 	</div>
 </div>

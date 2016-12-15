@@ -69,7 +69,13 @@
 			  if (user) {
 			    // User is signed in.
 			    var userId = user.uid;
-			    // var userRef = rootRef.child('users').child(userId);
+			    var userRef = $firebaseObject(rootRef.child('users').child(userId));
+
+          userRef.$loaded().then(function(userData){
+            console.log(userData);
+            vm.name = userData.name;
+            vm.numberOfDownloads = userData.Downloads;
+          });
 
        //          //$interval refreshes page when teh tours and reviews are loaded
        //          $interval(function(){});
@@ -107,12 +113,13 @@
        // });
 
        rootRef.child('users').child(userId).once('value', function(snapshot) {
+
           // snapshot.forEach(function(childSnapshot) {
             // var childKey = childSnapshot.key();
             // var childData = childSnapshot.val();
             // console.log(snapshot.val().tours);
             var tourRef = $firebaseArray(rootRef.child('users').child(userId).child('tours'));
-            console.log(tourRef);
+            // console.log(tourRef);
             // for(var i = 0; i < snapshot.val().tours.length; i++){
             //   console.log("JEY");
             // }
@@ -120,27 +127,27 @@
             tourRef.$loaded().then(function(data){
                 for(var i = 0; i < data.length; i++){
                         vm.toursArray.push(data[i].$id);
-                        console.log(vm.toursArray);
+                        console.log(data);
                 var myTours = $firebaseObject(rootRef.child('tours').child(vm.toursArray[i]));
                     myTours.$loaded().then(function(tourDetails){
-                      console.log(tourDetails);
+                      // console.log(tourDetails);
                       vm.myToursArray.push(tourDetails);
                     })
-                    console.log(vm.myToursArray);
+                    // console.log(vm.myToursArray);
                 var myReviews = $firebaseArray(rootRef.child('reviews').child(vm.toursArray[i]));
                     myReviews.$loaded().then(function(revDetails){
-                        console.log(revDetails);
+                        // console.log(revDetails);
                         vm.reviewsArray.push(revDetails);
-                        console.log(vm.reviewsArray);
+                        // console.log(vm.reviewsArray);
 
                         for(var i = 0; i < revDetails.length; i++){
                           // console.log(revDetails[i].user);
                           var revUserId = revDetails[i].user;
-                          console.log(revUserId);
+                          // console.log(revUserId);
                           var reviewers = $firebaseArray(rootRef.child('users').child(revUserId));
                           reviewers.$loaded().then(function(peopleDetails){
                             vm.reviewersArray.push(peopleDetails[4].$value);
-                            console.log(peopleDetails[4].$value);
+                            // console.log(peopleDetails[4].$value);
                           })
                           
                         }
