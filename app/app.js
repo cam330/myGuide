@@ -3,6 +3,20 @@
 
    var app = angular.module('app', ['angularAudioRecorder', 'ui.router', 'firebase', 'LocalStorageModule', 'chart.js', 'angularCharts']);
 
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
+app.filter('spaceless',function() {
+    return function(input) {
+        if (input) {
+            return input.replace(/\s+/g, '');    
+        }
+    }
+});
+
    		app.config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
               $httpProvider.defaults.headers.common = {};

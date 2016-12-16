@@ -15,6 +15,8 @@
         vm.reviewsArray = [];
         vm.myToursArray = [];
         vm.reviewersArray = [];
+        vm.numberOfTours = "";
+        vm.numberOfReviews = "";
         var rootRef = firebase.database().ref();
 
 
@@ -24,46 +26,49 @@
 
         function activate() {
 
+          vm.status = localStorageService.get("Loggedin");
+
           var d = new Date();
-          console.log(d.getMonth()+1 + ":" + d.getDate());
+          // console.log(d.getMonth()+1 + ":" + d.getDate());
 
         vm.data = {
             series: ['Tour1', 'Tour2'],
             data: [{
-              x: "12/6",
+              x: "12/8",
               y: [5, 0],
               tooltip: "this is tooltip"
             }, {
-              x: "12/7",
-              y: [7, 2]
-            }, {
-              x: "12/8",
-              y: [2, 5]
-            }, {
               x: "12/9",
-              y: [10, 0]
+              y: [7, 2]
             }, {
               x: "12/10",
               y: [2, 5]
             }, {
               x: "12/11",
-              y: [3, 6]
+              y: [10, 0]
             }, {
               x: "12/12",
-              y: [7, 8]
+              y: [2, 5]
             }, {
               x: "12/13",
+              y: [3, 6]
+            }, {
+              x: "12/14",
+              y: [7, 8]
+            }, {
+              x: "12/15",
               y: [3,7]
             }]
         };
 
-        	localStorageService.set("Loggedin", true);
+        	
 
-        	vm.status = localStorageService.get("Loggedin");
-        	console.log(vm.status);
+        	
+        	// console.log(vm.status);
 
             // var userInfo = rootRef.child('users').child('btChJXUrUhbbJYpJuEPoZ17lfv73');
             // vm.fireObj = $firebaseArray(userInfo);
+
 
         	firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
@@ -72,10 +77,11 @@
 			    var userRef = $firebaseObject(rootRef.child('users').child(userId));
 
           userRef.$loaded().then(function(userData){
-            console.log(userData);
+            // console.log(userData);
             vm.name = userData.name;
             vm.numberOfDownloads = userData.Downloads;
           });
+
 
        //          //$interval refreshes page when teh tours and reviews are loaded
        //          $interval(function(){});
@@ -127,17 +133,23 @@
             tourRef.$loaded().then(function(data){
                 for(var i = 0; i < data.length; i++){
                         vm.toursArray.push(data[i].$id);
-                        console.log(data);
+                        // console.log(data);
                 var myTours = $firebaseObject(rootRef.child('tours').child(vm.toursArray[i]));
                     myTours.$loaded().then(function(tourDetails){
                       // console.log(tourDetails);
                       vm.myToursArray.push(tourDetails);
+                      vm.numberOfTours = vm.myToursArray.length;
                     })
-                    // console.log(vm.myToursArray);
                 var myReviews = $firebaseArray(rootRef.child('reviews').child(vm.toursArray[i]));
                     myReviews.$loaded().then(function(revDetails){
+
+                      // console.log(myReviews);
                         // console.log(revDetails);
                         vm.reviewsArray.push(revDetails);
+                        vm.numberOfReviews = vm.reviewsArray.length;
+
+
+                        // console.log(vm.reviewsArray);
                         // console.log(vm.reviewsArray);
 
                         for(var i = 0; i < revDetails.length; i++){
@@ -149,8 +161,13 @@
                             vm.reviewersArray.push(peopleDetails[4].$value);
                             // console.log(peopleDetails[4].$value);
                           })
+
+
                           
                         }
+
+                        // console.log(vm.myToursArray);
+
                         // var reviewers = $firebaseArray(rootRef.child())
 
                         // var reviewers = $firebaseObject(rootRef.child('users').child(vm.reviewsArray[i].user));
@@ -158,9 +175,13 @@
                         //     console.log(peopleDetails);
                         //   });
                     });
-                    console.log(vm.reviewsArray);
+                    // console.log(vm.reviewsArray);
+
 
                 }
+                
+                console.log(vm.reviewsArray[2]);
+                $interval(function(){});
 
             })
 

@@ -124,10 +124,11 @@
         	var newButton = document.createElement( "button" ),
         	elStyle = {
         		position: "absolute",
+                width: 2 + "em",
         		top: vm.percentH + "%",
         		left: vm.percentW + "%",
-        		"background-color" : "red",
-        		"border-radius" : 3 + "px",
+        		"background-color" : "rgba(58,229,159,.8)",
+        		"border-radius" : 30 + "px",
         	};
 
         	Object.keys( elStyle ).forEach(function ( property ) {
@@ -279,7 +280,7 @@
 
             // console.log(vm.finishTourArray);
 
-            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, guide: vm.currentUser});
+            rootRef.child('tours').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, description: vm.tourDescription, keyWords: vm.selectedWords, price: vm.tourPrice, downloads: 0, guide: vm.currentUser, duration: vm.totalDuration});
             rootRef.child('tours').child(vm.tourId).child('reviews').set({count: 0, total: 0});
             rootRef.child('audio').child(vm.tourId).set({title: vm.tourTitle, country: vm.country, attraction: vm.attraction, points: vm.detailsArray});
             rootRef.child('users').child(vm.currentUser).child("tours").child(vm.tourId).set({created : Date.now()});

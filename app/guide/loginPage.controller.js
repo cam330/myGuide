@@ -39,6 +39,7 @@
 			firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
 			    // User is signed in.
+			    localStorageService.set("Loggedin", true);
 			    $state.go("homePageState");
 			  } else {
 

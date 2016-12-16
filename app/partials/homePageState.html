@@ -2,13 +2,13 @@
 <h1>Welcome, {{vm.name}}</h1>
 
 <div id="analyticsDiv">
-	<div id="numberOfDownloads" class="col-sm-4">
+	<div id="numberOfDownloads" align="center" class="col-sm-offset-1 col-sm-3">
 		<h1>{{vm.numberOfDownloads}}</h1>
-		<h3>Number of Downloads</h3>
+		<h2>Downloads</h2>
 	</div>
 
 
-		<div 
+		<div id="chartDiv" 
 		    data-ac-chart="'line'" 
 		    data-ac-data="vm.data" 
 		    data-ac-config="vm.config"
@@ -17,60 +17,59 @@
 
 
 </div>
+	<div id="tourAndReviewContainer">
+		<div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
+			<label style="font-size: 1.5em">{{vm.numberOfTours}} Tours</label>
+			<div>
+				<div id='tourDisplayDiv' ng-repeat="tour in vm.myToursArray | reverse | limitTo:3 ">
+					<font size="4" class="col-sm-6">{{tour.title}}</font>
+					<font size="2.5" class="col-sm-6">{{tour.attraction}}, {{tour.country}}</font>
+				</div>
+<!-- 				<div id='tourDisplayDiv'>
+					<font size="3" class="col-sm-6">{{vm.myToursArray[2].title}}</font>
+					<font size="2.5" class="col-sm-6">{{vm.myToursArray[2].attraction}}, {{vm.myToursArray[2].country}}</font>
+				</div>
+				<div id='tourDisplayDiv'>
+					<font size="3" class="col-sm-6">{{vm.myToursArray[4].title}}</font>
+					<font size="2.5" class="col-sm-6">{{vm.myToursArray[4].attraction}}, {{vm.myToursArray[4].country}}</font>
+				</div> -->
+			</div>
+		</div>
 
-<div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
-	<label style="font-size: 1.5em">Tours</label>
-	<div>
-		<div id='tourDisplayDiv'>
-			<font size="3" class="col-sm-6">{{vm.myToursArray[1].title}}</font>
-			<font size="2.5" class="col-sm-6">{{vm.myToursArray[1].attraction}}, {{vm.myToursArray[1].country}}</font>
-		</div>
-		<div id='tourDisplayDiv'>
-			<font size="3" class="col-sm-6">{{vm.myToursArray[2].title}}</font>
-			<font size="2.5" class="col-sm-6">{{vm.myToursArray[2].attraction}}, {{vm.myToursArray[2].country}}</font>
-		</div>
-		<div id='tourDisplayDiv'>
-			<font size="3" class="col-sm-6">{{vm.myToursArray[3].title}}</font>
-			<font size="2.5" class="col-sm-6">{{vm.myToursArray[3].attraction}}, {{vm.myToursArray[3].country}}</font>
+		<div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
+			<label style="font-size: 1.5em">{{vm.numberOfReviews}} Reviews</label>
+			<div>
+				<div id='reviewDisplayDiv' ng-repeat="review in vm.reviewsArray | limitTo:4">
+					<!-- <div ng-repeat="entry in review"> -->
+						<font class="col-sm-4" size="5">{{review[0].rating}}</font>
+						<font class="col-sm-4" size="3">{{vm.reviewersArray[$index]}}</font>
+					<!-- </div> -->
+				</div>
+<!-- 				<div id='reviewDisplayDiv'>
+					<label>{{review}}</label>
+					<div ng-repeat="entry in review">
+						<h4>{{entry.rating}}</h4></br>
+						<label>{{vm.reviewersArray[$index]}}</label></br>
+						<label>{{entry.comment}}</label>
+					</div>
+				</div>
+				<div id='reviewDisplayDiv'>
+					<label>{{review}}</label>
+					<div ng-repeat="entry in review">
+						<h4>{{entry.rating}}</h4></br>
+						<label>{{vm.reviewersArray[$index]}}</label></br>
+						<label>{{entry.comment}}</label>
+					</div>
+				</div>
+				<div id='reviewDisplayDiv'>
+					<label>{{review}}</label>
+					<div ng-repeat="entry in review">
+						<h4>{{entry.rating}}</h4></br>
+						<label>{{vm.reviewersArray[$index]}}</label></br>
+						<label>{{entry.comment}}</label>
+					</div>
+				</div> -->
+			</div>
 		</div>
 	</div>
-</div>
-
-<div id='toursAndRating' class="col-sm-offset-1 col-sm-5">
-	<label style="font-size: 1.5em">Reviews</label>
-	<div>
-		<div id='reviewDisplayDiv'>
-			<!-- <label>{{review}}</label> -->
-			<div ng-repeat="entry in review">
-				<h4>{{entry.rating}}</h4></br>
-				<label>{{vm.reviewersArray[$index]}}</label></br>
-				<label>{{entry.comment}}</label>
-			</div>
-		</div>
-		<div id='reviewDisplayDiv'>
-			<!-- <label>{{review}}</label> -->
-			<div ng-repeat="entry in review">
-				<h4>{{entry.rating}}</h4></br>
-				<label>{{vm.reviewersArray[$index]}}</label></br>
-				<label>{{entry.comment}}</label>
-			</div>
-		</div>
-		<div id='reviewDisplayDiv'>
-			<!-- <label>{{review}}</label> -->
-			<div ng-repeat="entry in review">
-				<h4>{{entry.rating}}</h4></br>
-				<label>{{vm.reviewersArray[$index]}}</label></br>
-				<label>{{entry.comment}}</label>
-			</div>
-		</div>
-		<div id='reviewDisplayDiv'>
-			<!-- <label>{{review}}</label> -->
-			<div ng-repeat="entry in review">
-				<h4>{{entry.rating}}</h4></br>
-				<label>{{vm.reviewersArray[$index]}}</label></br>
-				<label>{{entry.comment}}</label>
-			</div>
-		</div>
-	</div>
-</div>
 </div>
