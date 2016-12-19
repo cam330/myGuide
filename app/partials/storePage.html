@@ -1,6 +1,6 @@
-<h1>Store</h1>
+<font size="9">Store</font>
 <div class="row">
-	<ul ng-repeat="tour in vm.toursArray">
+	<ul id="storeDiv" ng-repeat="tour in vm.toursArray | reverse">
 		<div id="tourCellDiv" class="col-sm-3" style=" background-image: url(http://localhost:8080/app/img/TourImages/{{tour.attraction  | spaceless}}.jpg);">
 			<div id="tourHeadingDiv" style="padding-top: .3em;">
 				<label style="margin-left: .7em;">3h:35m</label>

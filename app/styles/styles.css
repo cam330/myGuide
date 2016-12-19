@@ -232,12 +232,16 @@ body {
 
 #profilePicture {
   margin: 2em;
-  height: 8em;
+  height: 10em;
   width: 10em;
 
-  border-radius: 1em;
+  border-radius: 5em;
   /*border: 0.7px solid black;*/
   box-shadow: 0px 0px 11px #222;
+}
+
+#welcomeDiv {
+  margin-left: 0.3em;
 }
 
 #tourCellDiv {
@@ -271,10 +275,14 @@ body {
   box-shadow: 0px -5px 11px #444;
 }
 
-
-#mapsDisplayDiv {
+#mapDevider {
+  margin-top: 1em;
   border: 1px solid #ccc;
+}
 
+#pickAMapTitle {
+  padding-left: 0.2em;
+  margin-bottom: 1em;
 }
 
 #mapThumbnail {

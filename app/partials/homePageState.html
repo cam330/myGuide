@@ -1,5 +1,5 @@
 <div id="homePage">
-<h1>Welcome, {{vm.name}}</h1>
+<font size="9" id="welcomeDiv" >Welcome, {{vm.name}}</font>
 
 <div id="analyticsDiv">
 	<div id="numberOfDownloads" align="center" class="col-sm-offset-1 col-sm-3">
@@ -41,7 +41,7 @@
 			<div>
 				<div id='reviewDisplayDiv' ng-repeat="review in vm.reviewsArray | limitTo:4">
 					<!-- <div ng-repeat="entry in review"> -->
-						<font class="col-sm-4" size="5">{{review[0].rating}}</font>
+						<font class="col-sm-4" size="5">{{vm.reviewData[$index]}}</font>
 						<font class="col-sm-4" size="3">{{vm.reviewersArray[$index]}}</font>
 					<!-- </div> -->
 				</div>

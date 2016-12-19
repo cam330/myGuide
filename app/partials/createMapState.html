@@ -122,7 +122,7 @@
 
 	</div>
 	<div>
-		<label>{{vm.selectedWords}}</label>
+		<label>{{vm.arrayToString(vm.selectedWords)}}</label>
 		<select id="inputTourDetail" class="form-control" multiple>
 			<option ng-repeat="word in vm.keyWordsArray" ng-click="vm.selectKeyWord(word)">{{word}}</option>
 		</select>

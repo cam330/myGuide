@@ -17,6 +17,7 @@
         vm.reviewersArray = [];
         vm.numberOfTours = "";
         vm.numberOfReviews = "";
+        vm.name1 = "";
         var rootRef = firebase.database().ref();
 
 
@@ -32,34 +33,35 @@
           // console.log(d.getMonth()+1 + ":" + d.getDate());
 
         vm.data = {
-            series: ['Tour1', 'Tour2'],
+            series: ['Tours'],
             data: [{
-              x: "12/8",
-              y: [5, 0],
-              tooltip: "this is tooltip"
-            }, {
               x: "12/9",
-              y: [7, 2]
+              y: [5]
             }, {
               x: "12/10",
-              y: [2, 5]
+              y: [9]
             }, {
               x: "12/11",
-              y: [10, 0]
+              y: [7]
             }, {
               x: "12/12",
-              y: [2, 5]
+              y: [10]
             }, {
               x: "12/13",
-              y: [3, 6]
+              y: [9]
             }, {
               x: "12/14",
-              y: [7, 8]
+              y: [5]
             }, {
               x: "12/15",
-              y: [3,7]
+              y: [5]
+            }, {
+              x: "12/16",
+              y: [2]
             }]
         };
+
+        vm.reviewData = ["3/5", "5/5", "1/5", "3/5",]
 
         	
 
@@ -148,6 +150,8 @@
                         vm.reviewsArray.push(revDetails);
                         vm.numberOfReviews = vm.reviewsArray.length;
 
+                                        vm.name1 = vm.myToursArray[vm.myToursArray.length-1];
+                                       console.log(vm.name1.title);
 
                         // console.log(vm.reviewsArray);
                         // console.log(vm.reviewsArray);

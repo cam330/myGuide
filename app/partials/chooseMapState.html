@@ -1,8 +1,9 @@
 
 <div id="chooseBackgroundImg">
-	<h1>{{vm.chosenTour}}</h1>
+	<font id="pickAMapTitle" size="9">{{vm.chosenTour}}</font>
 
 	<div id="countriesTableDiv">
+		<div id="mapDevider"></div>
 		<div id="mapsDisplayDiv" ng-repeat="place in vm.placesArray">
 			<h2 class="col-sm-12">{{place.country}}</h2>
 			<div class="col-sm-3" ng-repeat="attraction in place.attraction" ng-click="vm.clickedAttraction(attraction, place.country)">

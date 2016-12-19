@@ -263,6 +263,10 @@
             }
         }
 
+        vm.arrayToString = function(string){
+    return string.join(", ");
+};
+
         vm.finishTour = function(){
 
             vm.showFinishDiv = false;

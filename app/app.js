@@ -25,7 +25,7 @@ app.filter('spaceless',function() {
               $httpProvider.defaults.headers.patch = {};
               
 
-   			$urlRouterProvider.otherwise("/settingsState");
+   			$urlRouterProvider.otherwise("/homePageState");
 
    			$stateProvider
    				.state('createMapState',{
